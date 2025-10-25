@@ -176,7 +176,7 @@ aws --endpoint-url=https://storage.yandexcloud.net s3api put-bucket-cors --bucke
 
 Если вам нужно защитить другие файлы/папки от удаления, добавьте дополнительные `--exclude` параметры в файл `.github/workflows/deploy.yml`:
 
-```yaml
+```bash
 --exclude "your-folder/*" --exclude "your-file.json"
 ```
 
