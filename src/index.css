@@ -1990,139 +1990,111 @@
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    .dark\:border-input {
-      border-color: var(--input);
+  .dark\:border-input:is(.dark *) {
+    border-color: var(--input);
+  }
+
+  .dark\:bg-destructive\/60:is(.dark *) {
+    background-color: var(--destructive);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .dark\:bg-destructive\/60:is(.dark *) {
+      background-color: color-mix(in oklab, var(--destructive) 60%, transparent);
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    .dark\:bg-destructive\/60 {
-      background-color: var(--destructive);
+  .dark\:bg-input\/30:is(.dark *) {
+    background-color: var(--input);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .dark\:bg-input\/30:is(.dark *) {
+      background-color: color-mix(in oklab, var(--input) 30%, transparent);
+    }
+  }
+
+  .dark\:text-muted-foreground:is(.dark *) {
+    color: var(--muted-foreground);
+  }
+
+  @media (hover: hover) {
+    .dark\:hover\:bg-accent\/50:is(.dark *):hover {
+      background-color: var(--accent);
     }
 
     @supports (color: color-mix(in lab, red, red)) {
-      .dark\:bg-destructive\/60 {
-        background-color: color-mix(in oklab, var(--destructive) 60%, transparent);
+      .dark\:hover\:bg-accent\/50:is(.dark *):hover {
+        background-color: color-mix(in oklab, var(--accent) 50%, transparent);
       }
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    .dark\:bg-input\/30 {
+  @media (hover: hover) {
+    .dark\:hover\:bg-input\/50:is(.dark *):hover {
       background-color: var(--input);
     }
 
     @supports (color: color-mix(in lab, red, red)) {
-      .dark\:bg-input\/30 {
-        background-color: color-mix(in oklab, var(--input) 30%, transparent);
+      .dark\:hover\:bg-input\/50:is(.dark *):hover {
+        background-color: color-mix(in oklab, var(--input) 50%, transparent);
       }
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    .dark\:text-muted-foreground {
-      color: var(--muted-foreground);
+  .dark\:focus-visible\:ring-destructive\/40:is(.dark *):focus-visible {
+    --tw-ring-color: var(--destructive);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .dark\:focus-visible\:ring-destructive\/40:is(.dark *):focus-visible {
+      --tw-ring-color: color-mix(in oklab, var(--destructive) 40%, transparent);
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    @media (hover: hover) {
-      .dark\:hover\:bg-accent\/50:hover {
-        background-color: var(--accent);
-      }
+  .dark\:aria-invalid\:ring-destructive\/40:is(.dark *)[aria-invalid="true"] {
+    --tw-ring-color: var(--destructive);
+  }
 
-      @supports (color: color-mix(in lab, red, red)) {
-        .dark\:hover\:bg-accent\/50:hover {
-          background-color: color-mix(in oklab, var(--accent) 50%, transparent);
-        }
-      }
+  @supports (color: color-mix(in lab, red, red)) {
+    .dark\:aria-invalid\:ring-destructive\/40:is(.dark *)[aria-invalid="true"] {
+      --tw-ring-color: color-mix(in oklab, var(--destructive) 40%, transparent);
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    @media (hover: hover) {
-      .dark\:hover\:bg-input\/50:hover {
-        background-color: var(--input);
-      }
+  .dark\:data-\[state\=active\]\:border-input:is(.dark *)[data-state="active"] {
+    border-color: var(--input);
+  }
 
-      @supports (color: color-mix(in lab, red, red)) {
-        .dark\:hover\:bg-input\/50:hover {
-          background-color: color-mix(in oklab, var(--input) 50%, transparent);
-        }
-      }
+  .dark\:data-\[state\=active\]\:bg-input\/30:is(.dark *)[data-state="active"] {
+    background-color: var(--input);
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .dark\:data-\[state\=active\]\:bg-input\/30:is(.dark *)[data-state="active"] {
+      background-color: color-mix(in oklab, var(--input) 30%, transparent);
     }
   }
 
-  @media (prefers-color-scheme: dark) {
-    .dark\:focus-visible\:ring-destructive\/40:focus-visible {
-      --tw-ring-color: var(--destructive);
-    }
-
-    @supports (color: color-mix(in lab, red, red)) {
-      .dark\:focus-visible\:ring-destructive\/40:focus-visible {
-        --tw-ring-color: color-mix(in oklab, var(--destructive) 40%, transparent);
-      }
-    }
+  .dark\:data-\[state\=active\]\:text-foreground:is(.dark *)[data-state="active"] {
+    color: var(--foreground);
   }
 
-  @media (prefers-color-scheme: dark) {
-    .dark\:aria-invalid\:ring-destructive\/40[aria-invalid="true"] {
-      --tw-ring-color: var(--destructive);
-    }
-
-    @supports (color: color-mix(in lab, red, red)) {
-      .dark\:aria-invalid\:ring-destructive\/40[aria-invalid="true"] {
-        --tw-ring-color: color-mix(in oklab, var(--destructive) 40%, transparent);
-      }
-    }
+  .dark\:data-\[state\=checked\]\:bg-primary-foreground:is(.dark *)[data-state="checked"] {
+    background-color: var(--primary-foreground);
   }
 
-  @media (prefers-color-scheme: dark) {
-    .dark\:data-\[state\=active\]\:border-input[data-state="active"] {
-      border-color: var(--input);
-    }
+  .dark\:data-\[state\=unchecked\]\:bg-card-foreground:is(.dark *)[data-state="unchecked"] {
+    background-color: var(--card-foreground);
   }
 
-  @media (prefers-color-scheme: dark) {
-    .dark\:data-\[state\=active\]\:bg-input\/30[data-state="active"] {
-      background-color: var(--input);
-    }
-
-    @supports (color: color-mix(in lab, red, red)) {
-      .dark\:data-\[state\=active\]\:bg-input\/30[data-state="active"] {
-        background-color: color-mix(in oklab, var(--input) 30%, transparent);
-      }
-    }
+  .dark\:data-\[state\=unchecked\]\:bg-input\/80:is(.dark *)[data-state="unchecked"] {
+    background-color: var(--input);
   }
 
-  @media (prefers-color-scheme: dark) {
-    .dark\:data-\[state\=active\]\:text-foreground[data-state="active"] {
-      color: var(--foreground);
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .dark\:data-\[state\=checked\]\:bg-primary-foreground[data-state="checked"] {
-      background-color: var(--primary-foreground);
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .dark\:data-\[state\=unchecked\]\:bg-card-foreground[data-state="unchecked"] {
-      background-color: var(--card-foreground);
-    }
-  }
-
-  @media (prefers-color-scheme: dark) {
-    .dark\:data-\[state\=unchecked\]\:bg-input\/80[data-state="unchecked"] {
-      background-color: var(--input);
-    }
-
-    @supports (color: color-mix(in lab, red, red)) {
-      .dark\:data-\[state\=unchecked\]\:bg-input\/80[data-state="unchecked"] {
-        background-color: color-mix(in oklab, var(--input) 80%, transparent);
-      }
+  @supports (color: color-mix(in lab, red, red)) {
+    .dark\:data-\[state\=unchecked\]\:bg-input\/80:is(.dark *)[data-state="unchecked"] {
+      background-color: color-mix(in oklab, var(--input) 80%, transparent);
     }
   }
 
