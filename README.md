@@ -1,4 +1,3 @@
-[![Deploy to Yandex Cloud S3](https://github.com/ecrofeg/Travelguide/actions/workflows/main.yml/badge.svg?branch=main)](https://github.com/ecrofeg/Travelguide/actions/workflows/main.yml)
 
   # Travel Guide Website
 

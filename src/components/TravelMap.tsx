@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, memo } from "react";
 import { loadGoogleMaps } from "../utils/googleMaps";
 
 interface TravelMapProps {
@@ -21,7 +21,7 @@ interface TravelMapProps {
   };
 }
 
-export function TravelMap({ route, places, transitRoute }: TravelMapProps) {
+function TravelMapComponent({ route, places, transitRoute }: TravelMapProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<HTMLDivElement | null>(null);
   const mapInstanceRef = useRef<any>(null);
@@ -444,3 +444,64 @@ export function TravelMap({ route, places, transitRoute }: TravelMapProps) {
     </div>
   );
 }
+
+// Custom comparison function for memo
+function arePropsEqual(
+  prevProps: TravelMapProps,
+  nextProps: TravelMapProps
+): boolean {
+  // Compare route arrays
+  if (prevProps.route.length !== nextProps.route.length) return false;
+  for (let i = 0; i < prevProps.route.length; i++) {
+    if (
+      prevProps.route[i].lat !== nextProps.route[i].lat ||
+      prevProps.route[i].lng !== nextProps.route[i].lng
+    ) {
+      return false;
+    }
+  }
+
+  // Compare places arrays
+  if (prevProps.places.length !== nextProps.places.length) return false;
+  for (let i = 0; i < prevProps.places.length; i++) {
+    const prevPlace = prevProps.places[i];
+    const nextPlace = nextProps.places[i];
+    if (
+      prevPlace.id !== nextPlace.id ||
+      prevPlace.name !== nextPlace.name ||
+      prevPlace.lat !== nextPlace.lat ||
+      prevPlace.lng !== nextPlace.lng ||
+      prevPlace.category !== nextPlace.category
+    ) {
+      return false;
+    }
+  }
+
+  // Compare transitRoute
+  if (prevProps.transitRoute && nextProps.transitRoute) {
+    if (
+      prevProps.transitRoute.cities.length !==
+      nextProps.transitRoute.cities.length
+    ) {
+      return false;
+    }
+    for (let i = 0; i < prevProps.transitRoute.cities.length; i++) {
+      const prevCity = prevProps.transitRoute.cities[i];
+      const nextCity = nextProps.transitRoute.cities[i];
+      if (
+        prevCity.name !== nextCity.name ||
+        prevCity.lat !== nextCity.lat ||
+        prevCity.lng !== nextCity.lng
+      ) {
+        return false;
+      }
+    }
+  } else if (prevProps.transitRoute !== nextProps.transitRoute) {
+    return false;
+  }
+
+  return true;
+}
+
+// Wrap in memo with custom comparison to prevent re-renders when props don't change
+export const TravelMap = memo(TravelMapComponent, arePropsEqual);

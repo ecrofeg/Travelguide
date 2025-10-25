@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { useTranslation } from "react-i18next";
 import {
   ArrowLeft,
@@ -58,18 +58,31 @@ export function CountryDetail({
     });
   };
 
-  // Combine all city routes and places for the country-level map
-  const allPlaces = country.cities.flatMap((city) =>
-    city.places.map((place) => ({
-      id: `${city.id}-${place.id}`,
-      name: `${place.name} (${city.name})`,
-      lat: place.lat,
-      lng: place.lng,
-    })),
+  // Memoize country-level map data to prevent re-rendering when accordion state changes
+  const countryMapPlaces = useMemo(
+    () =>
+      country.cities.flatMap((city) =>
+        city.places.map((place) => ({
+          id: `${city.id}-${place.id}`,
+          name: `${place.name} (${city.name})`,
+          lat: place.lat,
+          lng: place.lng,
+          category: place.category,
+          photos: place.photos,
+        })),
+      ),
+    [country.cities],
   );
 
-  const allRoutePoints = country.cities.flatMap(
-    (city) => city.route,
+  const countryMapTransitRoute = useMemo(
+    () => ({
+      cities: country.cities.map((city) => ({
+        name: city.name,
+        lat: city.lat,
+        lng: city.lng,
+      })),
+    }),
+    [country.cities],
   );
 
   return (
@@ -92,23 +105,8 @@ export function CountryDetail({
 
           <TravelMap
             route={[]}
-            places={country.cities.flatMap((city) =>
-              city.places.map((place) => ({
-                id: `${city.id}-${place.id}`,
-                name: `${place.name} (${city.name})`,
-                lat: place.lat,
-                lng: place.lng,
-                category: place.category,
-                photos: place.photos,
-              })),
-            )}
-            transitRoute={{
-              cities: country.cities.map((city) => ({
-                name: city.name,
-                lat: city.lat,
-                lng: city.lng,
-              })),
-            }}
+            places={countryMapPlaces}
+            transitRoute={countryMapTransitRoute}
           />
         </div>
 
