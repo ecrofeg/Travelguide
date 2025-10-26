@@ -46,6 +46,7 @@ export function ImageCarousel({ images, alt, className }: ImageCarouselProps) {
                 src={image}
                 alt={`${alt} - ${index + 1}`}
                 className={className}
+                style={{ height: '700px' }}
               />
             </CarouselItem>
           ))}
